@@ -11,6 +11,7 @@ public class HomePageTest  extends BaseTest {
     public void testHomeLanding(){
         HomePage homePage = new HomePage(driver);
         openUrl("https://testing.qaautomationlabs.com/index.php");
+        homePage.verifyHomePageTitle();
 
     }
 
