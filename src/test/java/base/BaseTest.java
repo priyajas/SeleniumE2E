@@ -8,18 +8,20 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
+import pageObjects.HomePage;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     protected WebDriver driver;
+    protected static HomePage homePage;
 
     @Parameters("browser")
-    @BeforeMethod
+    @BeforeClass
     public void setUp(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
@@ -47,13 +49,21 @@ public class BaseTest {
         }
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getHomePage();
     }
 
     public void openUrl(String url) {
         driver.get(url);
     }
 
-    @AfterMethod
+    public HomePage getHomePage() {
+        if (homePage == null) {
+            homePage = new HomePage(driver);
+        }
+        return homePage;
+    }
+
+    @AfterClass
     public void tearDown() {
         if (driver != null) {
             driver.quit();

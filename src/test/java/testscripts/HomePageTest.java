@@ -1,21 +1,40 @@
 package testscripts;
 
 import base.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
-public class HomePageTest  extends BaseTest {
+public class HomePageTest extends BaseTest {
 
 
-    @Test
-    public void testHomeLanding(){
-        HomePage homePage = new HomePage(driver);
-        openUrl("https://testing.qaautomationlabs.com/index.php");
-        homePage.verifyHomePageTitle();
+    private final String BASE_URL = "https://testing.qaautomationlabs.com/index.php";
 
+    @BeforeClass
+    public void setUp() {
+        openUrl(BASE_URL);
     }
 
 
+    @Test
+    public void testHomeLanding() {
+        homePage.verifyHomePageTitle();
+    }
+
+    @Test
+    public void verifyNavItems() {
+        homePage.verifyNavItems();
+    }
+
+    @Test
+    public void verifyFooter() {
+        homePage.verifyCopyrightText();
+    }
+
+    @Test
+    public void verifyActiveItem() {
+        homePage.verifyDashBoardNavItemIsActive();
+    }
 
 
 }

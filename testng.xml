@@ -5,11 +5,7 @@
     <test verbose="2" preserve-order="true"
           name="HomePageTest">
         <classes>
-            <class name="testscripts.HomePageTest">
-                <methods>
-                    <include name="testHomeLanding"/>
-                </methods>
-            </class>
+            <class name="testscripts.CheckBoxPageTest"/>
         </classes>
     </test>
 </suite>
