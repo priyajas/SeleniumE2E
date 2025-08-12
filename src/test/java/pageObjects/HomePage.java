@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utilities.ScrollUtils;
 
-import javax.swing.*;
 import java.util.List;
 
 public class HomePage {
@@ -43,6 +42,13 @@ public class HomePage {
     @FindBy(css = "li.nav-item > a.nav-link[href='iframe.php']")
     private WebElement iFrameItem;
 
+    @FindBy(css = "li.nav-item > a.nav-link[href='shadow-dom.php']")
+    private WebElement shadowDOMItem;
+
+    @FindBy(css = "li.nav-item > a.nav-link[href='slider.php']")
+    private WebElement sliderItem;
+    @FindBy(css = "li.nav-item > a.nav-link[href='javaScript-alert.php']")
+    private WebElement alertItem;
 
 
     public HomePage(WebDriver driver) {
@@ -80,26 +86,41 @@ public class HomePage {
         Assert.assertTrue(classes.contains("active"), "DashBoard nav item is NOT active by default");
     }
 
-    public CheckBoxPage clickOnCheckbox(){
+    public CheckBoxPage clickOnCheckbox() {
         CheckBoxItem.click();
         return new CheckBoxPage(driver);
     }
 
 
-    public RadioButtonPage clickOnRadioButton(){
+    public RadioButtonPage clickOnRadioButton() {
         radioButtonItem.click();
         return new RadioButtonPage(driver);
     }
-    public DropDownPage clickOnDropDownButton(){
+
+    public DropDownPage clickOnDropDownButton() {
         dropDownItem.click();
         return new DropDownPage(driver);
     }
 
-    public IFramePage clickOnIFrame(){
+    public IFramePage clickOnIFrame() {
         iFrameItem.click();
         return new IFramePage(driver);
     }
 
+    public ShadowDOMPage clickOnShadowDOM() {
+        shadowDOMItem.click();
+        return new ShadowDOMPage(driver);
+    }
+
+    public SliderPage clickOnSlider() {
+        sliderItem.click();
+        return new SliderPage(driver);
+    }
+
+    public AlertsPage clickOnAlerts() {
+        alertItem.click();
+        return new AlertsPage(driver);
+    }
 
 
 }
