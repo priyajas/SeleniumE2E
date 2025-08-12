@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utilities.ScrollUtils;
 
+import javax.swing.*;
 import java.util.List;
 
 public class HomePage {
@@ -32,6 +33,16 @@ public class HomePage {
 
     @FindBy(css = "li.nav-item > a.nav-link[href='checkbox.php']")
     private WebElement CheckBoxItem;
+
+    @FindBy(css = "li.nav-item > a.nav-link[href='radio-button.php']")
+    private WebElement radioButtonItem;
+
+    @FindBy(css = "li.nav-item > a.nav-link[href='dropdown.php']")
+    private WebElement dropDownItem;
+
+    @FindBy(css = "li.nav-item > a.nav-link[href='iframe.php']")
+    private WebElement iFrameItem;
+
 
 
     public HomePage(WebDriver driver) {
@@ -73,6 +84,22 @@ public class HomePage {
         CheckBoxItem.click();
         return new CheckBoxPage(driver);
     }
+
+
+    public RadioButtonPage clickOnRadioButton(){
+        radioButtonItem.click();
+        return new RadioButtonPage(driver);
+    }
+    public DropDownPage clickOnDropDownButton(){
+        dropDownItem.click();
+        return new DropDownPage(driver);
+    }
+
+    public IFramePage clickOnIFrame(){
+        iFrameItem.click();
+        return new IFramePage(driver);
+    }
+
 
 
 }

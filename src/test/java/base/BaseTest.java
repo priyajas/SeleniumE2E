@@ -12,6 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import pageObjects.HomePage;
+import utilities.ConfigReader;
 
 import java.time.Duration;
 
@@ -19,6 +20,7 @@ public class BaseTest {
 
     protected WebDriver driver;
     protected static HomePage homePage;
+    protected static final String BASE_URL = ConfigReader.getProperty("baseUrl");
 
     @Parameters("browser")
     @BeforeClass
@@ -48,7 +50,7 @@ public class BaseTest {
                 throw new IllegalArgumentException("Browser not supported: " + browser);
         }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         getHomePage();
     }
 

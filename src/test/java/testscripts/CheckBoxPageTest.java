@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pageObjects.CheckBoxPage;
 
 public class CheckBoxPageTest extends BaseTest {
-    private final String BASE_URL = "https://testing.qaautomationlabs.com/index.php";
     CheckBoxPage checkBoxPage;
 
     @BeforeClass

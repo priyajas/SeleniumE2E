@@ -7,15 +7,10 @@ import pageObjects.HomePage;
 
 public class HomePageTest extends BaseTest {
 
-
-    private final String BASE_URL = "https://testing.qaautomationlabs.com/index.php";
-
     @BeforeClass
     public void setUp() {
         openUrl(BASE_URL);
     }
-
-
     @Test
     public void testHomeLanding() {
         homePage.verifyHomePageTitle();
