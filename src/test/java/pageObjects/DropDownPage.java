@@ -19,6 +19,16 @@ public class DropDownPage {
     @FindBy(id = "countryDropdown")
     private WebElement countryDropDown;
 
+    @FindBy(css = "#countryDropdown>option:first-child")
+    private WebElement select1stChild;
+    @FindBy(css = "#countryDropdown>option:last-child")
+    private WebElement selectLastChild;
+
+    @FindBy(css = "#countryDropdown>option:nth-child(3)")
+    private WebElement nthChild;
+    @FindBy(css = "#countryDropdown>option:nth-last-child(2)")
+    private WebElement nthLastChild;
+
     public DropDownPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);  // Initialize @FindBy elements
@@ -32,6 +42,10 @@ public class DropDownPage {
     }
 
     public void selectMultipleOptions() {
+        Assert.assertTrue(select1stChild.isDisplayed());
+        Assert.assertTrue(selectLastChild.isDisplayed());
+        Assert.assertTrue(nthChild.isDisplayed());
+        Assert.assertTrue(nthLastChild.isDisplayed());
         Select select = new Select(countryDropDown);
         select.selectByIndex(1);
         List<WebElement> allOptions = select.getOptions();

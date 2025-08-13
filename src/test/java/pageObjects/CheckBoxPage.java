@@ -20,6 +20,10 @@ public class CheckBoxPage {
     @FindBy(xpath = "(//div[contains(@class, 'card-tools')])[3]//label//input")
     private List<WebElement> AllCheckButtonCheckBoxes;
 
+    //xpath using child node
+    @FindBy(xpath="(//div[@class='card-tools'])[2]//child::label")
+    private List<WebElement> checkboxSelectionOptions;
+
     @FindBy(id = "toggleBtn")
     private WebElement AllCheckButton;
 
@@ -35,6 +39,7 @@ public class CheckBoxPage {
     }
 
     public void verifyEnableDisableCheckbox() {
+        Assert.assertEquals(checkboxSelectionOptions.size(), 4, "Count mismatch");
         for (int i = 0; i < allCheckBoxes.size(); i++) {
             WebElement checkbox = allCheckBoxes.get(i);
             boolean enabled = checkbox.isEnabled();

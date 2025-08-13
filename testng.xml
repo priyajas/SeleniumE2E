@@ -5,7 +5,7 @@
     <test verbose="2" preserve-order="true"
           name="HomePageTest">
         <classes>
-            <class name="testscripts.AlertsPageTest"/>
+            <class name="testscripts.DropDownPageTest"/>
         </classes>
     </test>
 </suite>

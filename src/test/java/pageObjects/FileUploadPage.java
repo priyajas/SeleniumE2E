@@ -10,4 +10,6 @@ public class FileUploadPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);  // Initialize @FindBy elements
     }
+
+
 }
