@@ -3,21 +3,23 @@ package testscripts;
 import base.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.SliderPage;
+import pageObjects.WebTable;
 
-public class SliderPageTest extends BaseTest {
-    SliderPage sliderPage;
+public class WebTableTest extends BaseTest {
+
+    WebTable webTable;
 
     @BeforeClass
     public void setUp() {
         getHomePage();
         openUrl(BASE_URL);
-        sliderPage = homePage.clickOnSlider();
+        webTable = homePage.clickOnWebTable();
     }
 
     @Test
-    public void testSlider() {
-        sliderPage.moveSlider();
+    public void tableDataTest() {
+        webTable.getTableData();
     }
+
 
 }

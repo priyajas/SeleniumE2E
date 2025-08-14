@@ -11,6 +11,7 @@ public class RadioButtonPageTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
         radioButtonPage = homePage.clickOnRadioButton();
     }

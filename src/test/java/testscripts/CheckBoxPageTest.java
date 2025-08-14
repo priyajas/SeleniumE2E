@@ -10,6 +10,7 @@ public class CheckBoxPageTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
         checkBoxPage = homePage.clickOnCheckbox();
     }

@@ -8,9 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pageObjects.HomePage;
 import utilities.ConfigReader;
 
@@ -18,7 +16,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static HomePage homePage;
     protected static final String BASE_URL = ConfigReader.getProperty("baseUrl");
 
@@ -29,7 +27,7 @@ public class BaseTest {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
-                driver = new ChromeDriver(chromeOptions);
+                driver.set(new ChromeDriver(chromeOptions));
                 break;
 
             case "firefox":
@@ -37,38 +35,39 @@ public class BaseTest {
                 // Optional: set window size since Firefox doesn't start maximized by default
                 firefoxOptions.addArguments("--width=1920");
                 firefoxOptions.addArguments("--height=1080");
-                driver = new FirefoxDriver(firefoxOptions);
+                driver.set( new FirefoxDriver(firefoxOptions));
                 break;
 
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
-                driver = new EdgeDriver(edgeOptions);
-                driver.manage().window().maximize();
+                driver.set( new EdgeDriver(edgeOptions));
+                getDriver().manage().window().maximize();
                 break;
 
             default:
                 throw new IllegalArgumentException("Browser not supported: " + browser);
         }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        getHomePage();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
     }
 
     public void openUrl(String url) {
-        driver.get(url);
+        getDriver().get(url);
     }
 
     public HomePage getHomePage() {
-        if (homePage == null) {
-            homePage = new HomePage(driver);
-        }
+            homePage = new HomePage(getDriver());
         return homePage;
     }
 
     @AfterClass
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            getDriver().quit();
         }
     }
 }

@@ -10,6 +10,7 @@ public class DropDownPageTest  extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
         dropDownPage = homePage.clickOnDropDownButton();
     }

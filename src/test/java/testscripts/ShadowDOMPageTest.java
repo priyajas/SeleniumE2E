@@ -10,6 +10,7 @@ public class ShadowDOMPageTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
         shadowDOMPage = homePage.clickOnShadowDOM();
     }

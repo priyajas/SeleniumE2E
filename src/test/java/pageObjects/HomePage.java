@@ -49,6 +49,8 @@ public class HomePage {
     private WebElement sliderItem;
     @FindBy(css = "li.nav-item > a.nav-link[href='javaScript-alert.php']")
     private WebElement alertItem;
+    @FindBy(css = "li.nav-item > a.nav-link[href='web-table.php']")
+    private WebElement webTableItem;
 
 
     public HomePage(WebDriver driver) {
@@ -121,6 +123,12 @@ public class HomePage {
         alertItem.click();
         return new AlertsPage(driver);
     }
+
+    public WebTable clickOnWebTable() {
+        webTableItem.click();
+        return new WebTable(driver);
+    }
+
 
 
 }

@@ -10,6 +10,7 @@ public class IFramePageTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
         iFramePage = homePage.clickOnIFrame();
     }

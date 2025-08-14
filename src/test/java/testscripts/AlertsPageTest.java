@@ -11,6 +11,7 @@ public class AlertsPageTest extends BaseTest {
     @BeforeClass
     public void setUp() {
         openUrl(BASE_URL);
+        getHomePage();
         alertsPage = homePage.clickOnAlerts();
     }
 

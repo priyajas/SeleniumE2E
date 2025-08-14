@@ -9,6 +9,7 @@ public class HomePageTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
+        getHomePage();
         openUrl(BASE_URL);
     }
     @Test
