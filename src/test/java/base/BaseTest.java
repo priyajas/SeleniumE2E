@@ -48,7 +48,7 @@ public class BaseTest {
                 throw new IllegalArgumentException("Browser not supported: " + browser);
         }
 
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public static WebDriver getDriver() {
