@@ -4,6 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chromium.ChromiumDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,8 +24,16 @@ public class ScreenshotUtil {
     public String takeScreenshot(String screenshotName) {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String filePath = System.getProperty("user.dir") + "/screenshots/" + screenshotName + "_" + timestamp + ".png";
+        File srcFile;
 
-        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        // Check if driver supports full-page screenshot
+       if (driver instanceof FirefoxDriver) {
+            srcFile = ((FirefoxDriver) driver).getFullPageScreenshotAs(OutputType.FILE);
+        } else {
+            // fallback to normal screenshot for other browsers
+            srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        }
+       // File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File destFile = new File(filePath);
 
         try {
